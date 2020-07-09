@@ -8,7 +8,7 @@ import '../models/item_model.dart';
 class NewsDbProvider {
   Database db;
 
-  init() async {
+  void init() async {
     // returns reference to a directory
     Directory documentDirectory = await getApplicationDocumentsDirectory();
     // path - stores the reference of actual path where we can create our database
@@ -48,7 +48,7 @@ class NewsDbProvider {
     );
   }
 
-  fetchItem(int id) async {
+  Future<ItemModel> fetchItem(int id) async {
     final maps = await db.query(
       'Items',
       columns: null, //['column1', 'column2']
@@ -63,7 +63,7 @@ class NewsDbProvider {
     return null;
   }
 
-  addItem(ItemModel item) {
+  Future<int> addItem(ItemModel item) {
     return db.insert('Items', item.toMap());
   }
 }
