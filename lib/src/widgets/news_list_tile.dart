@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hacker_news/src/widgets/loading_container.dart';
 import '../models/item_model.dart';
 import '../blocs/stories_provider.dart';
 
@@ -16,13 +17,13 @@ class NewsListTile extends StatelessWidget {
       builder: (BuildContext context,
           AsyncSnapshot<Map<int, Future<ItemModel>>> snapshot) {
         if (!snapshot.hasData) {
-          return Text('Loading...');
+          return LoadingContainer();
         }
         return FutureBuilder(
           future: snapshot.data[itemId],
           builder: (BuildContext context, AsyncSnapshot<ItemModel> snapshot) {
             if (!snapshot.hasData) {
-              return Text('Item is loading...');
+              return LoadingContainer();
             }
             return buildTile(snapshot.data);
           },
