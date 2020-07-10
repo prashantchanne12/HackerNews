@@ -13,14 +13,18 @@ class StoriesBloc {
   Stream<List<int>> get topIds => _topIds.stream;
   Stream<Map<int, Future<ItemModel>>> get items => _itemsOutput.stream;
 
+  // Add data to _items Stream
+  Function(int) get fetchItem => _itemFetcher.sink.add;
+
   // Add data to Stream
   fetchTopIds() async {
     final ids = await _repository.fetchTopIds();
     _topIds.sink.add(ids);
   }
 
-  // Add data to _items Stream
-  Function(int) get fetchItem => _itemFetcher.sink.add;
+  clearCache() {
+    return _repository.clearCache();
+  }
 
   StoriesBloc() {
     _itemFetcher.stream.transform(_itemsTransformer()).pipe(_itemsOutput);
