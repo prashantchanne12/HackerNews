@@ -31,7 +31,6 @@ class Repository {
     for (Cache cache in caches) {
       cache.addItem(item);
     }
-
     return item;
   }
 }

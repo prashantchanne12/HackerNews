@@ -18,31 +18,31 @@ class ItemModel {
   // Named Constructor
   ItemModel.fromJson(Map<String, dynamic> parsedJson) {
     id = parsedJson['id'];
-    deleted = parsedJson['deleted'];
+    deleted = parsedJson['deleted'] ?? false;
+    dead = parsedJson['dead'] ?? false;
     type = parsedJson['type'];
     time = parsedJson['time'];
-    text = parsedJson['text'];
-    dead = parsedJson['dead'];
+    text = parsedJson['text'] ?? '';
     parent = parsedJson['parent'];
-    kids = parsedJson['kids'];
+    kids = parsedJson['kids'] ?? [];
     url = parsedJson['url'];
     score = parsedJson['score'];
     title = parsedJson['title'];
-    descendants = parsedJson['descendants'];
+    descendants = parsedJson['descendants'] ?? 0;
   }
 
   ItemModel.fromDb(Map<String, dynamic> parsedJson) {
     id = parsedJson['id'];
-    deleted = parsedJson['deleted'] == 1;
     type = parsedJson['type'];
     time = parsedJson['time'];
     text = parsedJson['text'];
-    dead = parsedJson['dead'] == 1;
     parent = parsedJson['parent'];
     kids = jsonDecode(parsedJson['kids']);
     url = parsedJson['url'];
     score = parsedJson['score'];
     title = parsedJson['title'];
+    deleted = parsedJson['deleted'] == 1;
+    dead = parsedJson['dead'] == 1;
     descendants = parsedJson['descendants'];
   }
 

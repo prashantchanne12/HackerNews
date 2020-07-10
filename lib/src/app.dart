@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hacker_news/src/screens/new_list.dart';
+import 'package:hacker_news/src/blocs/stories_provider.dart';
+import 'package:hacker_news/src/screens/news_list.dart';
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'HackerNews',
-      debugShowCheckedModeBanner: false,
-      home: NewsList(),
+    return StoriesProvider(
+      child: MaterialApp(
+        title: 'HackerNews',
+        debugShowCheckedModeBanner: false,
+        home: NewsList(),
+      ),
     );
   }
 }

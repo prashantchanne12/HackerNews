@@ -47,11 +47,11 @@ class NewsDbProvider implements Source, Cache {
              text TEXT,
              parent INTEGER,
              kids BLOB,
-             dead INTEGER,
-             deleted INTEGER,
              url TEXT,
              score INTEGER,
              title TEXT,
+             dead INTEGER,
+             deleted INTEGER,
              descendants INTEGER
             )
           ''');
@@ -77,7 +77,11 @@ class NewsDbProvider implements Source, Cache {
 
   @override
   Future<int> addItem(ItemModel item) {
-    return db.insert('Items', item.toMap());
+    return db.insert(
+      'Items',
+      item.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
   }
 }
 
