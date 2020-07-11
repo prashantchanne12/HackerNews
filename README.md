@@ -1,5 +1,5 @@
 # HackerNews
 
-HackerNews Flutter application.
+HackerNews Flutter application using BLoC.
 
 ---
