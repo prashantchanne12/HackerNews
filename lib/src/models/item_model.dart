@@ -21,6 +21,7 @@ class ItemModel {
     deleted = parsedJson['deleted'] ?? false;
     dead = parsedJson['dead'] ?? false;
     type = parsedJson['type'];
+    by = parsedJson['by'];
     time = parsedJson['time'];
     text = parsedJson['text'] ?? '';
     parent = parsedJson['parent'];
@@ -37,6 +38,7 @@ class ItemModel {
     time = parsedJson['time'];
     text = parsedJson['text'];
     parent = parsedJson['parent'];
+    by = parsedJson['by'];
     kids = jsonDecode(parsedJson['kids']);
     url = parsedJson['url'];
     score = parsedJson['score'];
