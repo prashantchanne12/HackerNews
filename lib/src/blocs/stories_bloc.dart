@@ -5,18 +5,19 @@ import '../resources/repository.dart';
 class StoriesBloc {
   final _repository = Repository();
   final _topIds = PublishSubject<List<int>>(); // similar to StreamController
-  // Widgets are going to listen to this Stream
-  final _itemsOutput = BehaviorSubject<Map<int, Future<ItemModel>>>();
+  final _itemsOutput = BehaviorSubject<
+      Map<int,
+          Future<ItemModel>>>(); // Widgets are going to listen to this Stream
   final _itemFetcher = PublishSubject<int>();
 
   // Streams to retrieve data
   Stream<List<int>> get topIds => _topIds.stream;
   Stream<Map<int, Future<ItemModel>>> get items => _itemsOutput.stream;
 
-  // Add data to _items Stream
+  // Add data (Individual Id) to _items Stream
   Function(int) get fetchItem => _itemFetcher.sink.add;
 
-  // Add data to Stream
+  // Add Top Ids to Stream
   fetchTopIds() async {
     final ids = await _repository.fetchTopIds();
     _topIds.sink.add(ids);
